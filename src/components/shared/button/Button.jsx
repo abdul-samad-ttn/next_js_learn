@@ -10,9 +10,9 @@ Button.propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
     type: PropTypes.string,
-    type: PropTypes.string,
     label: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    onClick: PropTypes.func
 }
 
 export default Button

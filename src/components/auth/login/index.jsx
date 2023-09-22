@@ -7,9 +7,14 @@ import TextInput from "@/components/shared/input/textInput/TextInput"
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import Button from "@/components/shared/button/Button"
+import Button from "@/components/shared/button/Button";
+import { useRouter } from 'next/navigation'
+import { LOCAL_STORAGE_USER_NAME } from "@/utils/constants/storageConstants"
+import { ROUTES } from "@/utils/constants/routerConstants"
 
 const LoginForm = () => {
+
+    const router = useRouter()
 
     const formOptions = useMemo(() => {
         // form validation rules
@@ -21,14 +26,14 @@ const LoginForm = () => {
     }, [])
 
     // get functions to build form with useForm() hook
-    const { register, handleSubmit, reset, formState, control } = useForm({ ...formOptions, mode: "onSubmit" });
+    const { register, handleSubmit, formState } = useForm({ ...formOptions, mode: "onSubmit" });
     const { errors } = formState;
 
     const handleFormSubmit = useCallback((data) => {
         console.log("data === ", data)
-    }, [handleSubmit])
-
-    console.log("errors = ", errors)
+        localStorage.setItem(LOCAL_STORAGE_USER_NAME, data.username);
+        router.push(ROUTES.library);
+    }, [router])
 
     return (
         <section className={clsx(styles["login-section-wrapper"], "bg-red")}>
@@ -36,10 +41,10 @@ const LoginForm = () => {
                 <h2 className="text-green-300 font-medium text-center text-[1.5rem]">Login</h2>
             </div>
             <form onSubmit={handleSubmit(handleFormSubmit)} className="gap-2">
-                <TextInput name="username" {...register("username")} label="Username" classes={{ root: "my-[1rem]" }} 
+                <TextInput name="username" register={register} label="Username" classes={{ root: "my-[1rem]" }} 
                 error={errors?.username?.message}
                 />
-                <TextInput name="password" {...register("password")} label="Password" classes={{ root: "my-[1rem]" }} 
+                <TextInput name="password" register={register} label="Password" classes={{ root: "my-[1rem]" }} 
                 error={errors?.password?.message}
                 />
                 <Button name="submit" value="submit" label="Submit" type="submit" className="fixed bottom-0 my-[1rem]" />
