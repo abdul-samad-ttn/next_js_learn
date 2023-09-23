@@ -1,12 +1,10 @@
 import { createApi } from 'unsplash-js';
-import nodeFetch from 'node-fetch';
 
 const unsplash = createApi({
-  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY,
-  fetch: nodeFetch,
+  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY
 });
 
-const apiRequest = {
+const unsplashApiRequest = {
   // searchQuery is the string by which user wants to seach any photo
   searchPhotos:(searchQuery) => {
     return unsplash.search.getPhotos({
@@ -23,8 +21,8 @@ const apiRequest = {
   },
   // options = {page, perPage}
   getPhotosList: (options={}) => { 
-    unsplash.photos.list(options);
+    return unsplash.photos.list(options); 
   }
 }
 
-export default apiRequest
+export default unsplashApiRequest

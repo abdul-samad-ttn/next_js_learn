@@ -25,7 +25,10 @@ TextInput.propTypes = {
         root: PropTypes.string,
         label: PropTypes.string,
         input: PropTypes.string
-    })
+    }),
+    error: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func
 }
 
 TextInput.displayName="TextInput"

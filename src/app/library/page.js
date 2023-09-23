@@ -1,12 +1,13 @@
 
-import Header from "@/components/header/Header"
+import Applayout from "@/components/layout/appLayout/AppLayout"
+import LibraryList from "@/components/libraryList/libraryList"
 import React from "react"
 
 const Library = props => {
     return (
-        <>
-        <Header />
-        </>
+        <Applayout heading="Gallery">
+            <LibraryList />
+        </Applayout>
     )
 }
 
