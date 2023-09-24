@@ -2,7 +2,6 @@
 "use client"
 import React, { useState, useEffect, useCallback, useRef, Suspense } from "react"
 import unsplashApiRequest from "@/app/api/unsplash/unsplash"
-// import ImageDataJson from "@/utils/constants/imageData.json"
 import Button from "../shared/button/Button"
 import Spinner from "../spinner/Spinner"
 import Link from "next/link"
@@ -34,8 +33,6 @@ const ImageComponent = ({ photoId }) => {
             })
     }, [photoId])
 
-    console.log("ImageDataJson = ", imageData)
-
     const downloadImage = async (imgUrl) => {
         const response = await fetch(imgUrl)
         const blob = await response.blob()
@@ -45,7 +42,7 @@ const ImageComponent = ({ photoId }) => {
     }
 
     const handleDownload = useCallback(() => {
-        // setIsLoading(true)
+        setIsLoading(true)
         unsplashApiRequest.downloadPhoto(imageData?.links.download_location)
             .then(({ response, type }) => {
                 if (type === "success") {
@@ -53,7 +50,6 @@ const ImageComponent = ({ photoId }) => {
                 }
             })
             .catch(err => console.error(err))
-            // .finally(() => { setIsLoading(false) })
     }, [imageData?.links])
 
     useEffect(() => {
@@ -61,13 +57,12 @@ const ImageComponent = ({ photoId }) => {
     }, [])
 
     const onPortfolioClick = () => {
-        console.log("onPortfolioClick = ", onPortfolioClick)
         window.location.assign()
     }
 
     return (
         <div className="w-full p-8">
-            <div className="inline-flex justify-between items-center gap-3 flex-wrap w-full">
+            <div className="inline-flex justify-between gap-3 flex-wrap w-full">
                 <div className="self-center w-[60%]">
                     <Suspense fallback={<Spinner />}>
                         <img
@@ -79,7 +74,7 @@ const ImageComponent = ({ photoId }) => {
                     </Suspense>
                 </div>
 
-                <div className="gap-4 w-[35%]">
+                <div className="gap-4 w-[35%] py-2">
                     <h3 className="font-semibold flex gap-4 items-center">
                         Photo By {imageData?.user?.profile_image?.medium ? <img
                             src={imageData?.user?.profile_image?.medium}
@@ -140,6 +135,8 @@ const ImageComponent = ({ photoId }) => {
                     </div>
                 </div>
             </div>
+
+            {/* tag to help download image */}
             <a download={imageData?.slug} target="_blank" className="hidden" ref={downloadRef}></a>
         </div>
     )

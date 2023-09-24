@@ -5,15 +5,9 @@ const unsplash = createApi({
 });
 
 const unsplashApiRequest = {
-  // searchQuery is the string by which user wants to seach any photo
-  searchPhotos: (searchQuery) => {
-    return unsplash.search.getPhotos({
-      query: searchQuery,
-      page: 1,
-      perPage: 10,
-      color: 'green',
-      orientation: 'portrait',
-    });
+  // payload = {query=string, page=1, perPage=10}
+  searchPhotos: (payload) => {
+    return unsplash.search.getPhotos(payload);
   },
   // id is a string type that represent unique id of a photo
   getPhotoById: async (id) => {
