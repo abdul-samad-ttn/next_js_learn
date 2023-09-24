@@ -6,7 +6,7 @@ const unsplash = createApi({
 
 const unsplashApiRequest = {
   // searchQuery is the string by which user wants to seach any photo
-  searchPhotos:(searchQuery) => {
+  searchPhotos: (searchQuery) => {
     return unsplash.search.getPhotos({
       query: searchQuery,
       page: 1,
@@ -16,12 +16,17 @@ const unsplashApiRequest = {
     });
   },
   // id is a string type that represent unique id of a photo
-  getPhotoById: (id) => {
-    return unsplash.photos.get({ photoId: id });
+  getPhotoById: async (id) => {
+    return await unsplash.photos.get({ photoId: id });
   },
   // options = {page, perPage}
-  getPhotosList: (options={}) => { 
-    return unsplash.photos.list(options); 
+  getPhotosList: (options = {}) => {
+    return unsplash.photos.list(options);
+  },
+  downloadPhoto: async (download_location) => {
+    return unsplash.photos.trackDownload({
+      downloadLocation: download_location,
+    });
   }
 }
 

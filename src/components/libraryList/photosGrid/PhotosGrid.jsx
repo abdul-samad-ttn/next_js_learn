@@ -8,7 +8,6 @@ const PhotosGrid = (props) => {
     const { imagesList = [] } = props
     
     const onCardClick = useCallback((item)=>()=>{
-        console.log("onCard Click === ", item)
         router.push(`${ROUTES.library}/${item.id}`)
     },[])
 

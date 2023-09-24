@@ -24,11 +24,11 @@ const Header = (props) => {
     },[])
 
     return (
-        <div className="h-[4rem] w-full flex justify-between items-center border-b-2 border-indigo-500 p-4">
+        <div className=" w-full flex justify-between items-center border-b-2 border-indigo-500 px-4 py-2">
             <h2 className="first-letter:capitalize font-semibold">
             {userName}
             </h2>
-            <h1 className="text-[1.5rem] font-bold ">
+            <h1 className="text-[1.5rem] font-bold text-lime-500">
                 {heading}
             </h1>
             <Button name="logout" value="" label="Logout" type="button" className="py-1 px-2 text-sm font-semibold font-serif" onClick={handleLogout}  />
