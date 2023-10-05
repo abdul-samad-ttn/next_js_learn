@@ -1,4 +1,5 @@
 export const ROUTES = {
     login: "/login",
-    library: "/library"
+    library: "/library",
+    signup: "/signup"
 }
