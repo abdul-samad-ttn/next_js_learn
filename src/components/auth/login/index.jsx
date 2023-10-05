@@ -51,8 +51,8 @@ const LoginForm = () => {
                 error={errors?.password?.message}
                 />
                 <div className="flex justify-between items-center my-[1rem]">
-                <Button name="submit" value="submit" label="Submit" type="submit" className="" />
-                <Button name="signup" value="signup" label="Signup" type="button" className="" onClick={navigateToSignUp}/>
+                    <Button name="submit" value="submit" label="Submit" type="submit" className="" />
+                    <Button name="signup" value="signup" label="Signup" type="button" className="" onClick={navigateToSignUp} />
                 </div>
                 
             </form>

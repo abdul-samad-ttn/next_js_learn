@@ -48,6 +48,10 @@ const SignUpForm = () => {
         // router.push(ROUTES.signup);
     }, [router])
 
+    const navigateToLogin = useCallback(()=>{
+        router.push(ROUTES.login)
+    },[])
+
     return (
         <section className={clsx(styles["login-section-wrapper"], "bg-red")}>
             <div>
@@ -63,7 +67,10 @@ const SignUpForm = () => {
                 <TextInput name="password" register={register} label="Password" classes={{ root: "my-[1rem]" }} 
                 error={errors?.password?.message}
                 />
-                <Button name="submit" value="submit" label="Submit" type="submit" className=" my-[1rem]" />
+                <div className="flex justify-between items-center my-[1rem]">
+                    <Button name="submit" value="submit" label="Submit" type="submit" className="" />
+                    <Button name="login" value="login" label="Login" type="button" className="" onClick={navigateToLogin} />
+                </div>
             </form>
 
         </section>
